@@ -1,8 +1,20 @@
 <template>
 	<header class="head_top">
-		head...................
+		<section  v-if="headTitle">
+			<span>{{headTitle}}</span>
+		</section>
 	</header>
 </template>
+<script>
+	export default{
+		data(){
+			return{
+			}
+		},
+		props:['headTitle']
+		
+	}
+</script>
 
 <style>
 	.head_top{

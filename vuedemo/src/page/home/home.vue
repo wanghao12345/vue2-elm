@@ -1,7 +1,6 @@
 <template>
 	<div class="home">
-		<head-top>
-			<span>sdfk</span>
+		<head-top :head-title="profiletitle">
 		</head-top>
 		<div class="box">Home</div>
 	</div>
@@ -11,7 +10,9 @@
 	import headTop from '../../components/head/head'
 	export default{
 		data(){
-
+			return{
+				profiletitle:'我的'
+			}
 		},
 		components:{
 			headTop
