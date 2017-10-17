@@ -1,6 +1,7 @@
 <template>
 	<div class="home">
-		<head-top :head-title="profiletitle">
+		<head-top>
+			<span slot='logo' class="head_logo" @click="reload">ele.me</span>
 		</head-top>
 		<div class="box">Home</div>
 	</div>
@@ -16,7 +17,15 @@
 		},
 		components:{
 			headTop
-		}
+		},
+		methods:{
+			reload(){
+				window.location.reload();
+			}
+
+
+
+		},
 
 
 
@@ -32,7 +41,6 @@
 .home{
 	width: 100%;
 	height: 100%;
-	background-color: red;
 }
 
 

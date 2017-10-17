@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import App from './App'
 import routes from './router/routes'
+import './config/rem'
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
