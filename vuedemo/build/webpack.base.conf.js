@@ -28,7 +28,7 @@ module.exports = {
   },
   module: {
     rules: [
-/*      {
+     /*{
         test: /\.(js|vue)$/,
         loader: 'eslint-loader',
         enforce: 'pre',
@@ -72,5 +72,8 @@ module.exports = {
         }
       }
     ]
+  },
+  externals:{
+    'AMap':'window.AMap'
   }
 }
