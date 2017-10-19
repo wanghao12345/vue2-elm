@@ -1,14 +1,14 @@
 <template>
 	<div class="home">
 		<head-top signin-up='home'>
-			<span slot='logo' class="head_logo" @click="getLocationCity">ele.me</span>
+			<span slot='logo' class="head_logo" @click="reload">ele.me</span>
 		</head-top>
 		<nav class="city_nav">
 			<div class="city_tip">
 				<span>当前定位城市：</span>
 				<span>定位不准时，请在城市列表中选择</span>
 			</div>
-			<router-link to="/" class="guess_city">
+			<router-link :to="'/city/'+guessCityid" class="guess_city">
 				<span>{{guessCity}}</span>
 				<icon name="arrow-right" scale="1.3" style="color: #999;"></icon>
 			</router-link>
@@ -36,15 +36,13 @@
                 </li>
             </ul>
         </section>
-
-
 	</div>
 </template>
 
 <script>
 	import headTop from '../../components/head/head'
     import {cityGuess,hotcity,groupcity} from '../../service/getData'
-    import AMap from 'AMap'
+    //import {city} from '../../plug/map'
 	export default{
 		data(){
 			return{
@@ -55,24 +53,19 @@
 			}
 		},
         mounted(){
-            //获取当前城市
+            // 获取当前城市
             cityGuess().then(res => {
                 this.guessCity = res.name;
+                this.guessCityid = res.id;
             })
-
             //获取热门城市
             hotcity().then(res => {
                 this.hotcity = res;
             })
-
             //获取所有城市
             groupcity().then(res =>{
                 this.groupcity = res;
             })
-            
-
-           
-
         },
 		components:{
 			headTop
@@ -92,31 +85,10 @@
 		methods:{
 			reload(){
 				window.location.reload();
-			},
-            getLocationCity(){
-                var map = new AMap.Map("", {});
-                var citysearch = new AMap.CitySearch();
-                //自动获取用户IP，返回当前城市
-                citysearch.getLocalCity(function(status, result) {
-                    if (status === 'complete' && result.info === 'OK') {
-                        if (result && result.city && result.bounds) {
-                            var cityinfo = result.city;
-                            var citybounds = result.bounds;
-                            return cityinfo;
-                        }
-                    } else {
-                        
-                    }
-                });
-            }
-
-
-
-		},
-
-
+			}
 
 	}
+}
 </script>
 
 <style>
