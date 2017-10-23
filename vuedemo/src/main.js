@@ -4,6 +4,7 @@ import Icon from 'vue-svg-icon/Icon.vue'
 import App from './App'
 import routes from './router/routes'
 import './config/rem'
+import storeConfig from './vuex/store'
 
 
 Vue.use(VueRouter)
@@ -22,5 +23,6 @@ const router = new VueRouter({
 new Vue({
   el: '#app',
   router,
+  storeConfig,
   render:(h) =>h(App)
 })
