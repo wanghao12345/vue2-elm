@@ -8,7 +8,7 @@
 				<span>当前定位城市：</span>
 				<span>定位不准时，请在城市列表中选择</span>
 			</div>
-			<router-link :to="'/city/'+guessCityid" class="guess_city">
+			<router-link :to="'/city/'+guessCityid" class="guess_city" @click.native="$store.commit('changecity',guessCity)">
                 <span>{{guessCity}}</span>
                 <icon name="arrow-right" scale="1.3" style="color: #999;"></icon>
             </router-link>
@@ -16,7 +16,7 @@
         <section id="hot_city_container">
             <h4 class="city_title">热门城市</h4>
             <ul class="citylistul clear">
-                <router-link tag="li" @click="$store.commit('changecity',item.name)" v-for="item in hotcity" :to="'/city/'+item.id" :key="item.id" class="ellipsis">
+                <router-link tag="li" v-for="item in hotcity" :to="'/city/'+item.id" :key="item.id" class="ellipsis" @click.native="$store.commit('changecity',item.name)">
                     {{item.name}}
                 </router-link>
             </ul>
@@ -28,7 +28,7 @@
                         <span v-if="index == 0">(按字母排序)</span>     
                     </h4>
                     <ul class="groupcity_name_container citylistul clear">
-                        <router-link tag="li" v-for="item in value"  :to="'/city/'+item.id" :key="item.id" class="ellipsis">
+                        <router-link tag="li" v-for="item in value"  :to="'/city/'+item.id" :key="item.id" class="ellipsis" @click.native="$store.commit('changecity',item.name)">
                             {{item.name}}
                         </router-link>
                     </ul>
@@ -53,6 +53,7 @@
                 groupcity:{},//所有城市列表
 			}
 		},
+        store,
         mounted(){
             // 获取当前城市
             cityGuess().then(res => {
@@ -86,7 +87,10 @@
 		methods:{
 			reload(){
 				window.location.reload();
-			}
+			},
+            changecity(){
+                this.$store.commit('changecity',"上海")
+            }
 
 	}
 }
